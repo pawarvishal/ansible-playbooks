@@ -9,6 +9,11 @@
           src: ../index.php
           dest: /var/www/html
           mode: 0755
+      
+      - name: Create Simple Info Page
+        copy:
+          dest: /var/www/html/info.php
+          content: "<h1> Info about our Web Server {{ ansible_hostname }} </h1>"
 
       - name: Configgure php.ini file
         lineinfile:
