@@ -3,16 +3,20 @@
 ---
   - hosts: webservers
     become: true
+
+    vars:
+      path_to_app: "/var/www/html"
+
     tasks:
       - name: Upload application file
         copy:
           src: ../index.php
-          dest: /var/www/html
+          dest: "{{ path_to_app }}"
           mode: 0755
       
       - name: Create Simple Info Page
         copy:
-          dest: /var/www/html/info.php
+          dest: "{{ path_to_app }}/info.php"
           content: "<h1> Info about our Web Server {{ ansible_hostname }} </h1>"
 
       - name: Configgure php.ini file
